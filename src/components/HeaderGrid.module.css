@@ -1,0 +1,30 @@
+.HeaderContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.HeaderContainer button {
+  width: 110px;
+  height: 30px;
+  font-size: 15px;
+  background-color: #d9d9d9;
+  border-radius: 0;
+  border: 0;
+  margin-right: 25px;
+  cursor: pointer;
+}
+.HeaderContainer button:hover {
+  background-color: #9a9a9a;
+}
+
+.HeaderContainer label {
+  margin: 0 10px 0 35px;
+}
+.HeaderContainer input {
+  width: 100px;
+  height: 30px;
+  border: 0;
+  background-color: #d9d9d9;
+  text-align: end;
+  padding: 0 10px;
+}
