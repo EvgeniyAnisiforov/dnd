@@ -1,14 +1,14 @@
 import React from "react"
 import { useDrag } from "react-dnd"
 
-const GridItems = ({ components, setArea, sizeCell, height, width }) => {
+const GridItems = ({ components, setAreaCursor, sizeCell, height, width }) => {
   return (
     <>
       {components.map((component) => (
         <DraggableComponent
           key={component.id}
           component={component}
-          setArea={(e) => setArea(e)}
+          setAreaCursor={(e) => setAreaCursor(e)}
           sizeCell={sizeCell}
           height={height}
           width={width}
@@ -20,14 +20,19 @@ const GridItems = ({ components, setArea, sizeCell, height, width }) => {
 
 const DraggableComponent = ({
   component,
-  setArea,
+  setAreaCursor,
   sizeCell,
   height,
   width,
 }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "component",
-    item: { id: component.id, x: component.x, y: component.y },
+    item: {
+      id: component.id,
+      x: component.x,
+      y: component.y,
+      type: "component",
+    },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -52,42 +57,20 @@ const DraggableComponent = ({
       }}
     >
       <div
-        style={{
-          cursor: "grab",
-          position: "relative",
-          draggable: true,
-          zIndex: `${component.id + 1}`,
-        }}
-        onMouseDown={() => {
-          setArea("TopLeft")
-        }}
+        style={{ cursor: "grab", zIndex: `${component.id + 1}` }}
+        onMouseDown={() => setAreaCursor("TopLeft")}
       ></div>
       <div
-        style={{
-          cursor: "grab",
-          position: "relative",
-          draggable: true,
-          zIndex: `${component.id + 1}`,
-        }}
-        onMouseDown={() => setArea("TopRight")}
+        style={{ cursor: "grab", zIndex: `${component.id + 1}` }}
+        onMouseDown={() => setAreaCursor("TopRight")}
       ></div>
       <div
-        style={{
-          cursor: "grab",
-          position: "relative",
-          draggable: true,
-          zIndex: `${component.id + 1}`,
-        }}
-        onMouseDown={() => setArea("BottomLeft")}
+        style={{ cursor: "grab", zIndex: `${component.id + 1}` }}
+        onMouseDown={() => setAreaCursor("BottomLeft")}
       ></div>
       <div
-        style={{
-          cursor: "grab",
-          position: "relative",
-          draggable: true,
-          zIndex: `${component.id + 1}`,
-        }}
-        onMouseDown={() => setArea("BottomRight")}
+        style={{ cursor: "grab", zIndex: `${component.id + 1}` }}
+        onMouseDown={() => setAreaCursor("BottomRight")}
       ></div>
       <p
         style={{
